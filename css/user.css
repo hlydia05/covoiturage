@@ -1,0 +1,240 @@
+body {
+    width: auto;
+    background-color:bisque;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', Verdana, sans-serif;
+  }
+  
+  .navBar {
+    margin-bottom: 20px;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: inline-block;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.541);
+  }
+  
+  .navBar a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  .navBar nav li {
+    padding: 10px;
+    margin: 20px;
+    list-style-type: none;
+    display: inline-block;
+  }
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav ul li {
+    float: left;
+    position: relative;
+  }
+  
+  nav ul li a {
+    display: block;
+    padding: 10px;
+  }
+  
+  i {
+    font-size: 20px;
+  }
+  
+  i:hover,a:hover {
+  color: red;
+    cursor: pointer;
+  }
+  .logoutBtn {
+    float: right;
+  
+    color: black;
+  }
+  
+  .logoutBtn a:hover {
+    background-color: #c74331;
+    cursor: pointer;
+  
+    color: black;
+  }
+  .dropdown {
+    color: #000000;
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 10px;
+    z-index: 1;
+  }
+  
+  .logoutBtn:hover .dropdown {
+    display: block;
+    color: #000000;
+  
+  }
+  .sidebar ul {
+    height: 100%;
+    padding: 0;
+    margin-top: 0;
+  }
+  
+  .sidebar li {
+    color: #ffffff;
+    border-top: 1px solid;
+    list-style: none;
+    position: relative;
+  }
+  
+  .sidebar .nav-item {
+    display: block;
+    padding: 30px 30px;
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .couleur{
+    color: #000000;
+  
+    border-radius: 10px;
+    background-color: black;
+  }
+  .couleur:hover{
+    color: #000000;
+  
+    border-radius: 10px;
+    background-color: #c74331;
+  }
+  
+  .form{
+    float:right;
+  }
+  .sidebar a:hover {
+    color:red;
+  }
+  .IntroMsg {
+    margin: 20px;
+    position: relative;
+    width: 100%;
+    left: 5%;
+    top: -20%;
+    text-align: center;
+    padding: 100px;
+    height: auto;
+    background-color: transparent;
+    color: #13317c;
+  }
+  .header {
+    width: 80%;
+    height: auto;
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    display: grid;
+    grid-template-rows: 1fr;
+  }
+  
+  .header>div {
+    margin-top: 10%;
+    max-width: 100%;
+  
+  }
+  .sidebar {
+  position: fixed;
+  top: 103px;
+  left: 0;
+  bottom: 0;
+  width: 250px;
+  background-color: rgba(0, 0, 0, 0.541); /* 0.541*/
+  border-color: rgb(255, 255, 255);
+  color: #fff;
+  z-index: 1000;
+  }
+  .search-form {
+  display: inline-block;
+  margin-left: 120px;
+  margin-top: 8px;
+  }
+  
+  .search-form input[type="text"] {
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+  width: 200px;
+  margin-right: 5px;
+  }
+  
+  .search-form button[type="submit"] {
+  background-color: #fff;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  
+  font-size: 0.5rem;
+  color: rgba(0, 0, 0, 0.541);
+  cursor: pointer;
+  }
+  
+  .search-form button[type="submit"]:hover {
+  background-color: rgb(0, 0, 0);
+  }
+  
+  
+  
+  
+  
+  
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  table th, table td {
+    border: 2px solid #777;;
+    padding: 8px;
+    text-align: left;
+    
+  }
+  
+  
+  table th {
+    background-color: beige;
+    font-weight: bold;
+    font-size: 25px;
+    color: #333;
+  }
+  
+  table tbody tr:hover {
+    background-color: #f2f2f2;
+    color: #777;
+  }
+  
+  table td {
+    font-size: 20px;
+    color: #555;
+  }
+  
+  
+  
+  .error-msg{
+    margin:10px 0;
+    display: block;
+    background: crimson;
+    color:#fff;
+    border-radius: 5px;
+    font-size: 20px;
+    padding:10px;
+  }
+  
+  
+  
+  
+  
