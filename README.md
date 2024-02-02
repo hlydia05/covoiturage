@@ -5,8 +5,10 @@ EQUIPE : OULD SLIMANE NEILA HIOUANI LYDIA
 Technologie utiliser : php, mysql, javacript, html, css
 BDD : phpmyadmin
 Pour faire fonctionner le projet :
--Créer une base de donner nommer « covoiturage »
-Executer les requete sql suivante pour créer les tables :
+
+1. Créer une base de donner nommer « covoiturage »
+
+2. Executer les requete sql suivante pour créer les tables :
 CREATE TABLE administrateur (
     mat_etd VARCHAR(100) NOT NULL PRIMARY KEY,
     nom VARCHAR(255) NOT NULL,
@@ -53,6 +55,18 @@ CREATE TABLE user (
     latitude DOUBLE NOT NULL,
     longitude DOUBLE NOT NULL
 );
+CREATE TABLE utilisateur (
+    mat_etd VARCHAR(100) NOT NULL PRIMARY KEY,
+    nom VARCHAR(20) NOT NULL,
+    prenom VARCHAR(20) NOT NULL,
+    num_tel INT(12) NOT NULL,
+    email VARCHAR(30) NOT NULL,
+    mdp VARCHAR(100) NOT NULL,
+    matricule_v VARCHAR(25) NOT NULL,
+    UNIQUE KEY email (email),
+    UNIQUE KEY matricule_v (matricule_v)
+);
+
 CREATE TABLE utilisateur (
     mat_etd VARCHAR(100) NOT NULL PRIMARY KEY,
     nom VARCHAR(20) NOT NULL,
