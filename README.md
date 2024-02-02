@@ -9,6 +9,7 @@ Pour faire fonctionner le projet :
 1. Créer une base de donner nommer « covoiturage »
 
 2. Executer les requete sql suivante pour créer les tables :
+
 CREATE TABLE administrateur (
     mat_etd VARCHAR(100) NOT NULL PRIMARY KEY,
     nom VARCHAR(255) NOT NULL,
@@ -55,6 +56,7 @@ CREATE TABLE user (
     latitude DOUBLE NOT NULL,
     longitude DOUBLE NOT NULL
 );
+
 CREATE TABLE utilisateur (
     mat_etd VARCHAR(100) NOT NULL PRIMARY KEY,
     nom VARCHAR(20) NOT NULL,
