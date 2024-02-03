@@ -16,11 +16,20 @@ function redirect($url, $message){
 }
 
 
-function getNumber($table){
+function getCurrentNumber($table){
     global $conn;
-    $nbrquery = "SELECT count(*) FROM $table";
-    $nbrquery_run = mysqli_query($conn, $nbrquery);
-    return $nbrquery_run;
+    $current_query = "SELECT COUNT(*) AS count FROM $table";
+    $current_query_run = mysqli_query($conn, $current_query);
+    $row = mysqli_fetch_assoc($current_query_run);
+    return $row['count'];
+}
+
+function getPrevNumber($table){
+    global $conn;
+    $prev_query = "SELECT COUNT(*) AS count FROM $table WHERE DATE(created_at) BETWEEN DATE_SUB(CURDATE(), INTERVAL 2 MONTH) AND DATE_SUB(CURDATE(), INTERVAL 1 MONTH)";
+    $prev_query_run = mysqli_query($conn, $prev_query);
+    $row = mysqli_fetch_assoc($prev_query_run);
+    return $row['count'];
 }
 
 
