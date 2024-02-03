@@ -4,6 +4,20 @@
 @include '../functions/myfunctions.php';
 session_start();
 
+
+if(isset($_POST['max_passagers'])){
+    $maxPass = mysqli_real_escape_string($conn, $_POST['maxPass']);
+    $max_query = "UPDATE trajet SET  max_passagers=$maxPass"; 
+    $max_query_run = mysqli_query($conn, $max_query);
+
+    if($max_query_run){
+        redirect("admin_page.php", "max passengers altered successfully");
+    }
+    else{
+        redirect("admin_page.php", "something went wrong");
+    }
+}
+
 if(isset($_POST['ajout_admin'])){
     $nom = mysqli_real_escape_string($conn, $_POST['nom']);
     $prenom = mysqli_real_escape_string($conn, $_POST['prenom']);
@@ -54,5 +68,6 @@ elseif(isset($_POST['delete_trajet_btn'])){
         redirect("trajets.php", "something went wrong");
     }
 }
+
 
 ?>
