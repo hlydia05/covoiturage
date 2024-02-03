@@ -28,7 +28,7 @@ if(isset($_POST['submit'])){
       }else{
          $insert = "INSERT INTO user(nom , prenom, num_tel,  mat_etd, email, mdp  ) VALUES('$name', '$prenom','$tel' , '$mat' , '$email','$pass')";
          mysqli_query($conn, $insert);
-         header('location:login_user.php');
+         header('location:login.php');
       }
    }
 
