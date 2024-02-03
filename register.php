@@ -74,7 +74,7 @@ if(isset($_POST['submit'])){
 
     
       <input type="submit" name="submit" value="register now" class="form-btn">
-      <p>deja inscrit? <a href="login_form.php">connectez</a></p>
+      <p>deja inscrit? <a href="login.php">connectez</a></p>
    </form>
 
 </div>
