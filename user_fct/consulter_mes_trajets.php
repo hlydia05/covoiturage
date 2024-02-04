@@ -93,6 +93,7 @@ if(isset($_GET['delete'])){
             <th>heure de depart</th>
             <th>Nombre de passagers</th>
             <th>Conducteur</th>
+            <th>prix(DA)</th>
             <th>action</th>
             
             
@@ -107,6 +108,7 @@ if(isset($_GET['delete'])){
                  <td> <?php echo  $row['heure_dep'] ; ?> </td>
                  <td> <?php echo  $row['nb_passager'] ; ?> </td>
                  <td> <?php echo  $nom_user . " " . $prenom_user . "";?> </td>
+                 <td> <?php echo  $row['prix'] ; ?> </td>
                  
                  <td>
                  <a href="modifier_trajet.php?edit=<?php echo $row['id_trajet']; ?>" class="btn"> <i class="fas fa-edit"></i> edit </a>
