@@ -1,96 +1,130 @@
 <?php
+
 @include 'config.php';
+
 session_start();
 
 if(!isset($_SESSION['email'])){
-
-   header('location:../login.php');
-
+  header('location:../login.php');
 }
+
 @include 'includes/adminHeader.php';
-@include '../functions';
+
+@include '../functions/myfunctions.php';
+
 ?>
+
 <div class="container">
-    <div class="row">
-        <div class="col-lg-5 col-sm-5">
-            <div class="card  mb-2">
-                <div class="card-header p-3 pt-2">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="material-icons opacity-10">weekend</i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <p class="text-sm mb-0 text-capitalize">Bookings</p>
-                        <h4 class="mb-0">281</h4>
-                    </div>
-                </div>
 
-                <hr class="dark horizontal my-0">
-                <div class="card-footer p-3">
-                    <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55% </span>than last week</p>
-                </div>
-            </div>
+  <div class="row">
 
-            <div class="card  mb-2">
-                <div class="card-header p-3 pt-2">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-primary shadow-primary shadow text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="material-icons opacity-10">leaderboard</i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <p class="text-sm mb-0 text-capitalize">Today's Users</p>
-                        <h4 class="mb-0">254165</h4>
-                    </div>
-                </div>
-
-                <hr class="dark horizontal my-0">
-                <div class="card-footer p-3">
-                    <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+3% </span>than last month</p>
-                </div>
-            </div>
-
+    <div class="col-lg-5 col-sm-5">
+    
+      <div class="card mb-2">
+        <div class="card-header p-3 pt-2">
+          <div class="text-end pt-1">
+            <p class="text-sm mb-0 text-capitalize">Utilisateurs</p>
+            <?php
+            $currentUsers = getCurrentNumber("user");
+            $prevUsers = getPrevNumber("user");
+            ?>
+            <h4 class="mb-0"><?= $currentUsers; ?></h4>
+          </div>
         </div>
-        <div class="col-lg-5 col-sm-5 mt-sm-0 mt-4">
-            <div class="card  mb-2">
-                <div class="card-header p-3 pt-2 bg-transparent">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="material-icons opacity-10">store</i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <p class="text-sm mb-0 text-capitalize ">Revenue</p>
-                        <h4 class="mb-0 ">34k</h4>
-                    </div>
-                </div>
-
-                <hr class="horizontal my-0 dark">
-                <div class="card-footer p-3">
-                    <p class="mb-0 "><span class="text-success text-sm font-weight-bolder">+1% </span>than yesterday</p>
-                </div>
-            </div>
-
-            <div class="card ">
-                <div class="card-header p-3 pt-2 bg-transparent">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="material-icons opacity-10">person_add</i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <p class="text-sm mb-0 text-capitalize ">Followers</p>
-                        <h4 class="mb-0 ">+91</h4>
-                    </div>
-                </div>
-
-                <hr class="horizontal my-0 dark">
-                <div class="card-footer p-3">
-                    <p class="mb-0 ">Just updated</p>
-                </div>
-            </div>
-
+        <hr class="dark horizontal my-0">
+        <div class="card-footer p-3">
+          <p class="mb-0"><span class="text-success text-sm font-weight-bolder">
+            <?php 
+              echo round(($currentUsers/$prevUsers-1)*100);
+            ?>%  
+          </span> que le mois précédent</p>
         </div>
+      </div>
+      
+      <div class="card mb-2">
+        <div class="card-header p-3 pt-2">
+          <div class="text-end pt-1">
+            <p class="text-sm mb-0 text-capitalize">Conducteurs</p>
+            <?php
+            $currentDrivers = getCurrentNumber("utilisateur");
+            $prevDrivers = getPrevNumber("utilisateur");
+            ?>
+            <h4 class="mb-0"><?php echo $currentDrivers; ?></h4>
+          </div>
+        </div>
+        <hr class="dark horizontal my-0">
+        <div class="card-footer p-3">
+          <p class="mb-0"><span class="text-success text-sm font-weight-bolder">
+            <?php 
+              echo round(($currentDrivers/$prevDrivers-1)*100);
+            ?>%
+          </span> que le mois précédent</p>
+        </div>
+      </div>
+      
     </div>
+
+    <div class="col-lg-5 col-sm-5 mt-sm-0 mt-4">
+    
+      <!--<div class="card mb-2">
+        <div class="card-header p-3 pt-2">
+          <div class="text-center pt-1">
+            <p class="text-sm mb-0 text-capitalize">Revenus mensuels</p>
+          </div>
+        </div>
+        <div class="card-body p-3">
+          <canvas id="revenueChart"></canvas>
+          <script>
+            // Générer le graphique à partir des données SQL  
+            const data = {
+              labels: [...], 
+              datasets: [
+                {
+                  label: 'Revenus',
+                  data: [...], // revenus mensuels
+                }
+              ]
+            };
+
+            new Chart(document.getElementById('revenueChart'), {
+              type: 'line',
+              data: data
+            });
+          </script>
+        </div>
+      </div>-->
+      
+      <div class="card">
+        <form action="code.php" method="POST">
+          <div class="card-header p-3 pt-2">
+            <div class="text-center pt-1">
+              <p class="text-sm mb-0 text-capitalize">Modifier capacité maximale</p> 
+            </div>
+          </div>
+          <div class="card-body p-3">
+            <div class="form-group">
+                <?php
+                global $conn;
+                $max_query  = "SELECT MAX(max_passagers) AS max FROM trajet";
+                $max_result = mysqli_query($conn, $max_query);
+                $rowmax = mysqli_fetch_assoc($max_result);
+                ?>
+              <label>Nombre maximum de passagers</label>
+              <input type="number" name="maxPass" placeholder="<?= $rowmax['max'] ?>" class="form-control">
+            </div>
+            <button type="submit" name="max_passagers" class="btn btn-primary">Modifier</button>
+          </div>
+        </form>
+      </div>
+      
+    </div>
+
+  </div>
+  
 </div>
 
 <?php
+
 @include 'includes/adminFooter.php';
+
 ?>
