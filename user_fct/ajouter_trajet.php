@@ -33,16 +33,25 @@ if(isset($_POST['submit'])){
    $passager = mysqli_real_escape_string($conn, $_POST['nb_passager']);
    $prix =mysqli_real_escape_string($conn, $_POST['prix']);
 
+   
+    $max_query  = "SELECT MAX(max_passagers) AS max FROM trajet";
+    $max_result = mysqli_query($conn, $max_query);
+    $rowmax = mysqli_fetch_assoc($max_result);
 
-    $insert = "INSERT INTO trajet ( depart, destination, latitude , longitude , date_dep , heure_dep , nb_passager , conducteur, place_dispo,prix ) 
-    VALUES('$depart', '$destination', '$latitude','$longitude','$date_dep','$heure_dep','$passager' , '$mat_user' , '$passager' , '$prix')";
-    $result=mysqli_query($conn, $insert);
+    if($rowmax['max'] >=  $passager){
+        $insert = "INSERT INTO trajet ( depart, destination, latitude , longitude , date_dep , heure_dep , nb_passager , conducteur, place_dispo,prix ) 
+         VALUES('$depart', '$destination', '$latitude','$longitude','$date_dep','$heure_dep','$passager' , '$mat_user' , '$passager' , '$prix')";
+        $result=mysqli_query($conn, $insert);
 
-    if ($result) {
-    $success = "Le trajet a bien été enregistré.";
-    } else {
-    $error = "Une erreur s'est produite lors de l'enregistrement.";
+        if ($result) {
+            $success = "Le trajet a bien été enregistré.";
+        } else {
+            $error = "Une erreur s'est produite lors de l'enregistrement.";
+        }
+    } else{
+        $error = "Erreur: Le nombre de passagers est supérieur au maximum autorisé";
     }
+
         
         
 }
