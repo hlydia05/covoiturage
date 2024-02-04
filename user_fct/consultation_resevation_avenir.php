@@ -115,11 +115,16 @@ if(isset($_SESSION['email'])){
             <th>heure de depart</th>
             <th>passager</th>
             <th>identifiant du passager</th>
+            <th>prix</th>
             <th>action</th>
             
          </tr>
          </thead>
-         <?php  while($row = mysqli_fetch_assoc($result_reserv)){ ?>
+         <?php  while($row = mysqli_fetch_assoc($result_reserv)){ 
+             $select_PRIX = "SELECT * FROM trajet WHERE id_trajet='" . $row['trajet'] . "'";
+             $result_PRIX = mysqli_query($conn, $select_PRIX);
+             $row_prix = mysqli_fetch_assoc($result_PRIX);
+             ?>
          <tr>
                  <td> <?php echo  $row['depart'] ; ?></td>
                  <td> <?php echo  $row['destination'] ; ?></td>
@@ -127,6 +132,7 @@ if(isset($_SESSION['email'])){
                  <td> <?php echo  $row['heure_dep'] ; ?> </td>
                  <td> <?php echo  $row['nom_voyageur'] ; ?> </td>
                  <td> <?php echo  $row['user'] ; ?> </td>
+                 <td> <?php echo  $row_prix['prix'] ; ?> </td>
             <td>
 
               <a href="consultation_reservation.php?delete=<?php echo $row['id_reservation']; ?>" class="btn"> <i class="fas fa-trash"></i> annuller la reservation</a>
