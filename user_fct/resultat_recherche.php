@@ -26,7 +26,7 @@ if(isset($_POST['submit'])) {
     $query = "SELECT * FROM trajet t
           INNER JOIN utilisateur u ON t.conducteur = u.mat_etd
           WHERE t.destination = '$destination'
-          AND t.depart = '$depart'
+          /* AND t.depart = '$depart' */
           AND t.date_dep = '$date_dep'
           AND t.place_dispo > 0
           AND (6371 * ACOS(
@@ -129,6 +129,7 @@ if(isset($_POST['submit'])) {
                                     <th>Place disponible</th>
                                     <th>Conducteur</th>
                                     <th>distance</th>
+                                    <th>prix</th>
                                     <th>action</th>
                                    
 
@@ -150,6 +151,7 @@ if(isset($_POST['submit'])) {
                                     <td> <?php echo  $row['place_dispo'] ; ?> </td>
                                     <td><?php echo $row['nom'] . ' ' . $row['prenom']; ?></td>
                                     <td> <?php echo  $distance. 'km' ; ?></td>
+                                    <td><?php echo $row['prix']; ?> </td>
                                     <td>
                                      <a href="reserve.php?edit=<?php echo $row['id_trajet']; ?>" class="btn_ed"> <i class="fas fa-edit"></i> reserver </a>
                                     </td>   
