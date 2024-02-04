@@ -31,28 +31,11 @@ if(isset($_POST['submit'])){
    $date_dep = mysqli_real_escape_string($conn, $_POST['start_date']);
    $heure_dep = mysqli_real_escape_string($conn, $_POST['start_time']);
    $passager = mysqli_real_escape_string($conn, $_POST['nb_passager']);
+   $prix =mysqli_real_escape_string($conn, $_POST['prix']);
 
-   
-    $max_query  = "SELECT MAX(max_passagers) AS max FROM trajet";
-    $max_result = mysqli_query($conn, $max_query);
-    $rowmax = mysqli_fetch_assoc($max_result);
 
-    if($rowmax['max'] >=  $passager){
-        $insert = "INSERT INTO trajet ( depart, destination, latitude , longitude , date_dep , heure_dep , nb_passager , conducteur, place_dispo ) 
-        VALUES('$depart', '$destination', '$latitude','$longitude','$date_dep','$heure_dep','$passager' , '$mat_user' , '$passager')";
-        $result=mysqli_query($conn, $insert);
-
-        if ($result) {
-            $success = "Le trajet a bien été enregistré.";
-        } else {
-            $error = "Une erreur s'est produite lors de l'enregistrement.";
-        }
-    } else{
-        $error = "Erreur: Le nombre de passagers est supérieur au maximum autorisé";
-    }
-
-    $insert = "INSERT INTO trajet ( depart, destination, latitude , longitude , date_dep , heure_dep , nb_passager , conducteur, place_dispo ) 
-    VALUES('$depart', '$destination', '$latitude','$longitude','$date_dep','$heure_dep','$passager' , '$mat_user' , '$passager')";
+    $insert = "INSERT INTO trajet ( depart, destination, latitude , longitude , date_dep , heure_dep , nb_passager , conducteur, place_dispo,prix ) 
+    VALUES('$depart', '$destination', '$latitude','$longitude','$date_dep','$heure_dep','$passager' , '$mat_user' , '$passager' , '$prix')";
     $result=mysqli_query($conn, $insert);
 
     if ($result) {
@@ -128,6 +111,9 @@ if(isset($_POST['submit'])){
 
                     <label for="pasager">nombre de place pour le trajet :</label>
                     <input type="number" name="nb_passager" required placeholder="nombre de place pour le trajet">
+
+                    <label for="prix">Prix trajet :</label>
+                    <input type="number" name="prix" required placeholder="prix en DA">
 
                     <input type="submit" name="submit" value="Ajouter" class="form-btn">
 
