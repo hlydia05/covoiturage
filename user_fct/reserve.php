@@ -58,8 +58,9 @@ if (isset($_GET['edit'])) {
      $mat_cond = $row_trajet['conducteur'];
 
 
-    $insert_reserve = "INSERT INTO reservation (user, conducteur,trajet ,depart, destination, nom_cond , nom_voyageur, date_dep, heure_dep) 
-    VALUES ('$mat','$mat_cond', '$idtrajet', '$depart', '$destination', '$conducteur', '$user','$start_date','$start_time' )";
+     $insert_reserve = "INSERT INTO reservation (user, conducteur, trajet, depart, destination, nom_cond, nom_voyageur, date_dep, heure_dep) 
+     VALUES ('$mat', '$mat_cond', '$idtrajet', '" . mysqli_real_escape_string($conn, $depart) . "', '" . mysqli_real_escape_string($conn, $destination) . "', '" . mysqli_real_escape_string($conn, $conducteur) . "', '" . mysqli_real_escape_string($conn, $user) . "', '$start_date', '$start_time' )";
+     
     mysqli_query($conn, $insert_reserve);
 
     // Mettre à jour le nombre de place dispo
