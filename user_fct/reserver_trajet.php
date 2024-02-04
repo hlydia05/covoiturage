@@ -145,6 +145,7 @@ if ($userQuery) {
                                     <th>Place disponible</th>
                                     <th>Conducteur</th>
                                     <th>distance</th>
+                                    <th>prix(DA)</th>
                                     <th>action</th>
                                    
 
@@ -166,6 +167,7 @@ if ($userQuery) {
                                     <td> <?php echo  $row['place_dispo'] ; ?> </td>
                                     <td><?php echo $row['nom'] . ' ' . $row['prenom']; ?></td>
                                     <td> <?php echo  $distance. 'km' ; ?></td>
+                                    <td><?php echo $row['prix']; ?> </td>
                                     <td>
                                      <a href="reserve.php?edit=<?php echo $row['id_trajet']; ?>" class="btn_ed"> <i class="fas fa-edit"></i> reserver </a>
                                     </td>  
