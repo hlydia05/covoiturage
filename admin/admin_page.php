@@ -12,6 +12,15 @@ if(!isset($_SESSION['email'])){
 
 @include '../functions/myfunctions.php';
 
+// Fetch data for the revenue chart
+$data = $conn->query('SELECT YEAR(date_dep) AS year, MONTH(date_dep) AS month, SUM(prix) AS revenue FROM trajet GROUP BY year, month');
+$labels = [];
+$revenues = [];
+while ($row = $data->fetch_assoc()) {
+    $labels[] = $row['month'] . '/' . $row['year'];
+    $revenues[] = $row['revenue'];
+}
+
 ?>
 
 <div class="container">
@@ -66,7 +75,7 @@ if(!isset($_SESSION['email'])){
 
     <div class="col-lg-5 col-sm-5 mt-sm-0 mt-4">
     
-      <!--<div class="card mb-2">
+      <div class="card mb-2">
         <div class="card-header p-3 pt-2">
           <div class="text-center pt-1">
             <p class="text-sm mb-0 text-capitalize">Revenus mensuels</p>
@@ -74,25 +83,32 @@ if(!isset($_SESSION['email'])){
         </div>
         <div class="card-body p-3">
           <canvas id="revenueChart"></canvas>
+          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
           <script>
-            // Générer le graphique à partir des données SQL  
+            // Générer le graphique à partir des données SQL
             const data = {
-              labels: [...], 
-              datasets: [
-                {
-                  label: 'Revenus',
-                  data: [...], // revenus mensuels
-                }
-              ]
+                labels: <?php echo json_encode($labels); ?>,
+                datasets: [
+                    {
+                        label: 'Revenus',
+                        data: <?php echo json_encode($revenues); ?>,
+                    }
+                ]
             };
 
-            new Chart(document.getElementById('revenueChart'), {
-              type: 'line',
-              data: data
-            });
+            // Wrap the chart creation in a function to ensure it runs after DOMContentLoaded
+            function createChart() {
+                new Chart(document.getElementById('revenueChart'), {
+                    type: 'line',
+                    data: data
+                });
+            }
+
+            // Add event listener for DOMContentLoaded
+            document.addEventListener('DOMContentLoaded', createChart);
           </script>
         </div>
-      </div>-->
+      </div>
       
       <div class="card">
         <form action="code.php" method="POST">
